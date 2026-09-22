@@ -1,0 +1,225 @@
+/* ============================================
+   THE ENTRANCE — "Pick it up."
+   A folded paper. Empty room. Curiosity first.
+   ============================================ */
+
+.entrance {
+  position: fixed;
+  inset: 0;
+  background: var(--paper);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease, transform 1s var(--ease-smooth);
+}
+
+.entrance.exiting {
+  opacity: 0;
+  transform: scale(1.08);
+  pointer-events: none;
+}
+
+.entrance.gone {
+  display: none;
+}
+
+/* — The Paper — */
+.entrance-paper {
+  position: relative;
+  width: 280px;
+  height: 200px;
+  cursor: pointer;
+  transform: rotate(2.5deg);
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.entrance-paper:hover {
+  transform: rotate(1deg) scale(1.03);
+}
+
+.entrance-paper__fold {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: var(--shadow-lifted);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s var(--ease-bounce);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Subtle crumple texture */
+.entrance-paper__fold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    rgba(0,0,0,0.015) 40.5%,
+    rgba(0,0,0,0.015) 41%,
+    transparent 41.5%,
+    transparent 60%,
+    rgba(0,0,0,0.01) 60.5%,
+    rgba(0,0,0,0.01) 61%,
+    transparent 61.5%
+  );
+  pointer-events: none;
+}
+
+/* Dog-eared corner */
+.entrance-paper__fold::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  background: linear-gradient(135deg, transparent 50%, var(--paper) 50%);
+  box-shadow: -2px -2px 4px rgba(0,0,0,0.03);
+}
+
+/* — Paper text states — */
+.entrance-paper__text {
+  font-family: var(--font-handwritten);
+  font-size: 1.6rem;
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s var(--ease-smooth);
+}
+
+.entrance-paper__text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.entrance-paper__text.fading {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* — "Pick it up" hint — */
+.entrance-hint {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-handwritten);
+  font-size: 1.2rem;
+  color: var(--pencil-light);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.entrance-hint.visible {
+  opacity: 1;
+}
+
+/* Impatient wiggle after waiting */
+@keyframes impatient {
+  0%, 100% { transform: rotate(2.5deg); }
+  25% { transform: rotate(4deg); }
+  75% { transform: rotate(1deg); }
+}
+
+.entrance-paper.impatient {
+  animation: impatient 0.4s ease infinite;
+}
+
+/* — Paper airplane exit — */
+.entrance-paper.flying-away {
+  animation: foldAndFly 1.8s var(--ease-smooth) forwards;
+}
+
+@keyframes foldAndFly {
+  0% {
+    transform: rotate(2.5deg) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: rotate(0deg) scale(0.8) perspective(500px) rotateY(40deg);
+    opacity: 1;
+  }
+  60% {
+    transform: rotate(-15deg) scale(0.6) translateX(20vw) translateY(-10vh);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-25deg) scale(0.3) translateX(60vw) translateY(-60vh);
+    opacity: 0;
+  }
+}
+
+/* — Sidekick reveal text — */
+.entrance-reveal {
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 1.2s ease 0.3s;
+  pointer-events: none;
+  text-align: center;
+}
+
+.entrance-reveal.visible {
+  opacity: 1;
+}
+
+.entrance-reveal__name {
+  font-family: var(--font-handwritten);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  /* Wobble like someone wrote it */
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.entrance-reveal__sub {
+  font-family: var(--font-handwritten);
+  font-size: 1.1rem;
+  color: var(--pencil);
+  margin-top: 0.5rem;
+}
+
+/* — Scroll arrow — */
+.scroll-arrow {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.scroll-arrow.visible {
+  opacity: 1;
+  animation: arrowBob 2s ease-in-out infinite;
+}
+
+.scroll-arrow svg {
+  width: 30px;
+  height: 30px;
+  stroke: var(--pencil-light);
+  stroke-width: 2;
+  fill: none;
+}
+
+@keyframes arrowBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}

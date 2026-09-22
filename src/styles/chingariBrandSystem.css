@@ -1,0 +1,308 @@
+/* Chingari Professional Visual Identity & Brand System Presentation */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+.c-brand-deck {
+  --cream: #F6EEDD;
+  --cream-surface: #FAF4E8;
+  --cream-bright: #FFFFFF;
+  --dark: #241333;
+  --dark-deep: #160B21;
+  --dark-surface: #2E1A40;
+  --ink: #20130A;
+  --ink-muted: #5C4A3E;
+  --marigold: #D9720C;
+  --marigold-glow: #F0954A;
+  --gold: #B8860B;
+  --gold-accent: #D9B45C;
+  --border-light: rgba(32, 19, 10, 0.12);
+  --border-dark: rgba(246, 238, 221, 0.15);
+
+  --font-display: 'Big Shoulders Display', -apple-system, sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  font-family: var(--font-sans);
+  background: var(--cream);
+  color: var(--ink);
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.c-brand-deck *,
+.c-brand-deck *::before,
+.c-brand-deck *::after {
+  box-sizing: border-box;
+}
+
+/* Custom Deck Scrollbar */
+.c-brand-deck::-webkit-scrollbar {
+  width: 6px;
+}
+.c-brand-deck::-webkit-scrollbar-track {
+  background: var(--dark-deep);
+}
+.c-brand-deck::-webkit-scrollbar-thumb {
+  background: var(--marigold);
+  border-radius: 3px;
+}
+
+/* Slide Base */
+.c-slide {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 4.5rem 4.5rem 3.5rem;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.c-slide.dark-theme {
+  background: var(--dark);
+  color: var(--cream);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.c-slide.dark-deep {
+  background: var(--dark-deep);
+  color: var(--cream);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+@media (max-width: 768px) {
+  .c-slide {
+    padding: 3rem 1.5rem 2.5rem;
+  }
+}
+
+/* Slide Top Header Bar */
+.c-slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 1rem;
+}
+
+.c-slide.dark-theme .c-slide-header,
+.c-slide.dark-deep .c-slide-header {
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.c-slide-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--marigold);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.c-slide-category {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
+/* Typography tokens */
+.c-title-huge {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.c-title-large {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0 0 1rem 0;
+}
+
+.c-serif-lead {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--marigold);
+  margin: 0 0 1.5rem 0;
+}
+
+.c-body-text {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.68;
+  color: inherit;
+  opacity: 0.85;
+  max-width: 680px;
+}
+
+/* Rotating Seal badge */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.c-rotating-seal {
+  animation: spinSlow 22s linear infinite;
+  transform-origin: center;
+}
+
+/* Grid systems */
+.c-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.c-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.c-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .c-grid-2, .c-grid-3, .c-grid-4 {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+/* Card specimen */
+.c-specimen-card {
+  background: var(--cream-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1.75rem;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.c-slide.dark-theme .c-specimen-card,
+.c-slide.dark-deep .c-specimen-card {
+  background: var(--dark-surface);
+  border: 1px solid var(--border-dark);
+}
+
+.c-specimen-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+/* Color swatch badge */
+.c-swatch-chip {
+  height: 90px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* World Pillars */
+.c-world-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  background: var(--cream-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.c-slide.dark-theme .c-world-card,
+.c-slide.dark-deep .c-world-card {
+  background: var(--dark-surface);
+  border: 1px solid var(--border-dark);
+}
+
+.c-world-card-media {
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.c-world-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.c-world-card:hover .c-world-card-media img {
+  transform: scale(1.04);
+}
+
+.c-world-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Deck Controls Pill */
+.c-deck-pill {
+  position: fixed;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: rgba(22, 11, 33, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(246, 238, 221, 0.22);
+  border-radius: 9999px;
+  padding: 0.45rem 1.1rem;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.c-deck-pill button {
+  background: transparent;
+  border: none;
+  color: var(--cream);
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 0.95rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.c-deck-pill button:hover:not(:disabled) {
+  color: var(--marigold);
+}
+
+.c-deck-pill button:disabled {
+  opacity: 0.25;
+  cursor: default;
+}

@@ -1,0 +1,211 @@
+/* ============================================
+   RESPONSIVE — Mobile becomes swipeable cards
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Entrance */
+  .entrance-paper {
+    width: 240px;
+    height: 170px;
+  }
+
+  .entrance-reveal__name {
+    font-size: 2.5rem;
+  }
+
+  /* Notebook */
+  .notebook {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .notebook__spread {
+    flex-direction: column;
+    width: 95vw;
+  }
+
+  .notebook__spread::before {
+    /* Spine becomes horizontal */
+    left: 0;
+    right: 0;
+    top: 50%;
+    bottom: auto;
+    width: 100%;
+    height: 4px;
+    transform: translateY(-50%);
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0.06) 0%,
+      rgba(0,0,0,0.02) 40%,
+      transparent 50%,
+      rgba(0,0,0,0.02) 60%,
+      rgba(0,0,0,0.06) 100%
+    );
+  }
+
+  .notebook__page--left {
+    border-radius: 2px 2px 0 0;
+    padding: 2rem 1.5rem;
+  }
+
+  .notebook__page--left::before {
+    left: 40px;
+  }
+
+  .notebook__page--right {
+    border-radius: 0 0 2px 2px;
+    padding: 2rem 1.5rem;
+  }
+
+  .notebook__stamp { margin-left: 20px; }
+  .notebook__adventure { margin-left: 20px; }
+  .notebook__eraser { margin-left: 20px; }
+
+  .notebook__adventure-title {
+    font-size: 1.6rem;
+  }
+
+  .notebook__frog {
+    left: 10px;
+    bottom: 40px;
+  }
+
+  .notebook__object-area {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Treasure */
+  .treasure {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .treasure__desk {
+    min-height: 400px;
+  }
+
+  /* Philosophy */
+  .philosophy {
+    flex-direction: column;
+    padding: var(--space-xl) var(--space-md);
+    text-align: center;
+  }
+
+  .philosophy__text {
+    max-width: 100%;
+    margin-bottom: var(--space-xl);
+  }
+
+  .philosophy__moments {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+
+  .philosophy__polaroids {
+    flex-direction: row;
+    padding-left: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .polaroid {
+    max-width: 160px;
+  }
+
+  .polaroid img {
+    width: 140px;
+    height: 112px;
+  }
+
+  .polaroid:nth-child(1) { transform: rotate(-3deg); }
+  .polaroid:nth-child(2) { transform: rotate(2deg); margin-right: 0; }
+  .polaroid:nth-child(3) { transform: rotate(-1deg); margin-right: 0; }
+
+  /* Bulletin */
+  .bulletin {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .bulletin__board {
+    min-height: 500px;
+  }
+
+  .bulletin__sticky,
+  .bulletin__clipping,
+  .bulletin__postcard,
+  .bulletin__ticket,
+  .bulletin__recipe {
+    width: 160px;
+  }
+
+  .bulletin__postcard {
+    height: auto;
+  }
+
+  /* Chalkboard */
+  .chalkboard {
+    padding: var(--space-xl) var(--space-md);
+    min-height: 50vh;
+  }
+
+  .chalkboard__name {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  /* Library */
+  .library {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .library__card {
+    padding: 2rem 1.5rem 2.5rem;
+  }
+
+  .library__title {
+    font-size: 1.3rem;
+  }
+
+  /* Footer */
+  .drawer-footer {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .drawer-footer__frog {
+    right: 20px;
+    bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notebook__object-area {
+    width: 160px;
+    height: 160px;
+  }
+
+  .fortune-cookie {
+    width: 150px;
+    height: 100px;
+  }
+
+  .fortune-cookie__half {
+    width: 65px;
+    height: 75px;
+  }
+
+  .folded-note {
+    width: 160px;
+    height: 120px;
+  }
+
+  .museum-placard {
+    width: 170px;
+    padding: 1rem;
+  }
+
+  .evidence-bag {
+    width: 170px;
+    padding: 22px 14px 14px;
+  }
+
+  .bulletin__board {
+    min-height: 450px;
+  }
+}

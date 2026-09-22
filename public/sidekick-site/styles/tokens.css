@@ -1,0 +1,77 @@
+/* ============================================
+   TOKENS — The DNA of the visual world
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Caveat:wght@400;500;600;700&display=swap');
+
+:root {
+  /* — Ink & Paper — */
+  --paper:        #FAF3E0;
+  --paper-warm:   #F5E6CA;
+  --paper-cool:   #F0EDE6;
+  --cream:        #FDF8EF;
+  --ink:          #2C2C2C;
+  --pencil:       #7A7A7A;
+  --pencil-light: #B0A899;
+
+  /* — Palette (earned, never saturated) — */
+  --butter:       #F0C836;
+  --coral:        #D94F3B;
+  --sky:          #6BA3D6;
+  --forest:       #4A7C59;
+  --chalk-green:  #2D4A35;
+  --blush:        #E8A4A0;
+  --lavender:     #9B8EC4;
+
+  /* — Utility — */
+  --tape:         rgba(255, 248, 210, 0.75);
+  --kraft:        #C4A882;
+  --cork:         #B8956A;
+
+  /* — Shadows (handmade feel) — */
+  --shadow-paper: 2px 3px 8px rgba(44, 44, 44, 0.08), 0 1px 2px rgba(44, 44, 44, 0.05);
+  --shadow-lifted: 4px 6px 20px rgba(44, 44, 44, 0.12), 0 2px 4px rgba(44, 44, 44, 0.06);
+  --shadow-floating: 8px 12px 32px rgba(44, 44, 44, 0.15), 0 3px 6px rgba(44, 44, 44, 0.08);
+  --shadow-stamp: 1px 1px 0 rgba(44, 44, 44, 0.1);
+
+  /* — Typography — */
+  --font-serif:      'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-handwritten: 'Caveat', cursive;
+
+  /* — Spacing — */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 8rem;
+
+  /* — Transitions — */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+body {
+  font-family: var(--font-serif);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: default;
+}
+
+/* — Paper texture overlay (CSS only) — */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* — Selection color — */
+::selection {
+  background: var(--butter);
+  color: var(--ink);
+}

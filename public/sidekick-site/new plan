@@ -1,0 +1,399 @@
+# Sidekick — The After Plan
+
+> The frontend is a promise. Everything below is how we keep it.
+
+---
+
+## Where we are right now
+
+The kickbaby landing page exists. It does its job: it communicates the vibe —
+"permission to be stupid again." It has the scrapbook aesthetic, the tiny
+missions, the interactive objects, the frog. It captures emails.
+
+**But a landing page is not a product.**
+
+The question now: *what do we actually build, and in what order?*
+
+---
+
+## The core loop (what Sidekick actually IS)
+
+Before we talk tech, let's lock the product loop:
+
+```
+1. You open Sidekick.
+2. You see today's Pocket Adventure (or pick from a few).
+3. You either:
+   a) Do it solo and share the result, or
+   b) Find people nearby who want to do it together.
+4. You do something slightly ridiculous with strangers.
+5. You keep the memory (photo, drawing, object, story).
+6. You come back tomorrow because it was fun.
+```
+
+That's it. That's the whole product. Everything below serves this loop.
+
+---
+
+## PHASE 1 — The Waitlist Machine (Week 1–2)
+### Goal: Turn the landing page into a real growth engine.
+
+Right now the signup form collects emails... and does nothing with them.
+
+### 1.1 Backend for signups
+- **Set up a lightweight backend** (Node.js + Express or serverless via Vercel/Netlify Functions)
+- **Database**: Supabase (free tier, Postgres, auth built in) or Firebase
+- **Store**: name, email, reason for joining, timestamp, city (ask for city — we need it later)
+- **Send a welcome email** — not corporate. Handwritten-feeling. Like a note from a friend:
+  > "You're in. We don't know what we're doing either. But we saved you a seat."
+
+### 1.2 Referral layer
+- After signup, give each person a **unique invite link**
+- "Bring someone who still keeps interesting rocks."
+- Track referrals. People who refer 3+ friends → early access
+- Simple leaderboard internally (not public — no growth-hacker energy)
+
+### 1.3 City clustering
+- Start collecting **city data** from signups
+- When a city hits a threshold (say 30 people), that city "unlocks"
+- Show a live counter on the site: "12 people in Mumbai are waiting"
+- This creates organic FOMO that matches the vibe
+
+### 1.4 The Weekly Dispatch
+- **Email newsletter** (Resend or Loops for delivery)
+- Every week, send one Pocket Adventure to the waitlist
+- "This week's mission: Find the smoothest rock within walking distance. Send us a photo."
+- People start doing missions BEFORE the app exists
+- This is the real validation: do people actually do this stuff?
+
+**Tech stack for Phase 1:**
+```
+Frontend:  Current static site (kickbaby/)
+Backend:   Vercel Serverless Functions (or Netlify Functions)
+Database:  Supabase (Postgres + Auth)
+Email:     Resend (transactional) + Loops (newsletter)
+Analytics: Plausible or Umami (privacy-first, no cookie banners)
+Domain:    Get a real domain. sidekick.so? sidekick.club? joinsidekick.com?
+```
+
+---
+
+## PHASE 2 — The Pocket Adventure Engine (Week 3–6)
+### Goal: Build the actual thing people will use.
+
+### 2.1 Platform decision
+
+> **Not a native app. Not yet.**
+
+Build a **Progressive Web App (PWA)**.
+
+Why:
+- No App Store review process (Apple would take weeks)
+- Works on every phone immediately
+- Can be "installed" to home screen
+- Push notifications work (on Android, limited on iOS but improving)
+- You can ship daily without waiting for approvals
+- Feels native enough for what we need
+
+**Tech stack:**
+```
+Framework:    Next.js (App Router) or SvelteKit
+Styling:      Keep the scrapbook CSS system we already built
+Auth:         Supabase Auth (magic link — no passwords, matches the vibe)
+Database:     Supabase (Postgres)
+Real-time:    Supabase Realtime (for live features later)
+Storage:      Supabase Storage (photos, drawings)
+Hosting:      Vercel
+PWA:          next-pwa or vite-plugin-pwa
+```
+
+### 2.2 Core screens
+
+#### Home — "Today's Mission"
+- Shows one (or up to three) Pocket Adventures for today
+- Each adventure has:
+  - The mission prompt
+  - A visual object (fortune cookie, folded note, etc. — reuse our system)
+  - "Do it solo" or "Find a sidekick" buttons
+  - An estimated vibe: 🧸 cozy / 🎪 chaotic / 🔬 weird
+
+#### Solo mode
+- Do the mission alone
+- Upload a result: photo, drawing, text, voice note
+- Gets added to your personal "Pocket Museum" (collection of past missions)
+- Can be shared as a card to Instagram/WhatsApp
+
+#### Sidekick mode (the social magic)
+- "Find someone nearby who also wants to do this"
+- Location-based matching (not profile-based, not interest-based)
+- **No profiles. No bios. No photos.** Just: "this person is 0.5km away and also wants to find the ugliest rock"
+- You both accept → you get each other's first name and a meeting point suggestion
+- After the mission: both rate the experience (not each other — the EXPERIENCE)
+  - "Was it funny?" "Would you do another mission with this person?"
+
+#### Pocket Museum
+- Your personal collection of completed missions
+- Each entry: the mission, your result, the date, who you did it with
+- Looks like a scrapbook page. Not a feed. Not a grid. A scrapbook.
+- Optional: mark someone as a "recurring sidekick" (this is how friendships form)
+
+### 2.3 The mission engine
+- Missions are **curated, not user-generated** (at first)
+- We write 100+ missions across categories:
+  - 🪨 Object quests (find/make/bring something)
+  - 🎨 Creative challenges (draw/build/invent)
+  - 🗣️ Conversation starters (questions/debates/stories)
+  - 🏃 Outdoor adventures (explore/walk/discover)
+  - 🤝 Partner missions (require 2+ people)
+- Each mission has metadata:
+  - Solo-able? Group-able? Indoor/outdoor? Time required?
+  - Weather-appropriate? (don't suggest "find the best puddle" on a sunny day)
+- Missions rotate. Some are daily, some weekly, some seasonal.
+- **Special missions** for holidays, weather events, local festivals
+
+---
+
+## PHASE 3 — Community & Retention (Week 7–10)
+### Goal: Keep people coming back. Build real connections.
+
+### 3.1 Sidekick Streaks
+- Not gamification in the Duolingo sense
+- More like: "You've done 5 missions this month. Here's a tiny badge."
+- Badges are silly: "Rock Enthusiast" "Professional Nonsense-er" "Leaf Ranker"
+- They show up in your Pocket Museum
+
+### 3.2 City boards
+- Each unlocked city gets a "bulletin board" (like the one on our landing page)
+- People can pin completed missions, funny results, photos
+- Moderated but not sanitised. Keep the weird energy.
+- This is where community forms
+
+### 3.3 Recurring Sidekicks
+- If you and someone do 3+ missions together, the app suggests:
+  > "You and Maya have done 3 missions together. Want to make it official?"
+- "Official" just means you can directly invite each other to future missions
+- This is the natural friendship formation path
+
+### 3.4 Group missions
+- Some missions are designed for 3-6 people
+- "Build the ugliest birthday card" needs a group
+- Groups form organically: recurring sidekicks invite each other
+- No "create a group" button. Just: "Invite your sidekicks to this mission"
+
+### 3.5 The Dispatch evolves
+- Weekly email becomes more personal:
+  - "You did 2 missions this week. 847 people in London did them too."
+  - "Most popular result from Rock Olympics this week: [photo]"
+  - "New mission dropping Friday. It involves potatoes."
+
+---
+
+## PHASE 4 — The Physical Layer (Week 11–16)
+### Goal: Bridge digital and physical. This is where Sidekick becomes REAL.
+
+### 4.1 Sidekick Kits
+- Physical boxes mailed to members:
+  - 4 crayons (specific colours we choose)
+  - A tiny notebook
+  - A sticker sheet (our doodle aesthetic)
+  - 5 printed mission cards
+  - A smooth rock (yes, actually)
+- These become the objects people USE during missions
+- Cost: ~$8 to produce, sell at $15 or give free to top community members
+
+### 4.2 Pop-up Sidekick Sessions
+- In unlocked cities, organise real meetups
+- Not "networking events." Not "happy hours."
+- "Show up at this park on Saturday at 3pm. Bring one crayon."
+- We provide the missions. People provide the nonsense.
+- Document everything. Photos, videos, stories → back to the app
+
+### 4.3 Partner locations
+- Cafes, bookshops, parks that become "Sidekick spots"
+- They get a little sign: "Sidekick missions available here"
+- Maybe a jar of mission cards on the counter
+- In exchange: we drive foot traffic, they give us a community space
+
+---
+
+## PHASE 5 — Monetisation (Week 16+)
+### Goal: Make money without ruining the vibe.
+
+> Rule: if it feels corporate, we don't do it.
+
+### 5.1 Sidekick Membership — $3/month or $25/year
+What you get:
+- Access to "premium" missions (more elaborate, multi-day, seasonal)
+- Pocket Museum customisation (different scrapbook styles)
+- Early access to Sidekick Kits
+- Your name hand-written (digitally) in the credits page
+- A real sticker mailed to you once
+
+### 5.2 Sidekick Kits (physical product)
+- Sell kits as one-time purchases
+- Seasonal editions: Summer Kit, Rainy Day Kit, Holiday Kit
+- Gift-able: "Give someone permission to be silly"
+
+### 5.3 City sponsorships (careful)
+- Local businesses can "sponsor" a city's bulletin board
+- Not banner ads. More like: "This week's missions brought to you by [cool local bookshop]"
+- Only businesses that match the vibe. No banks. No insurance companies.
+
+### 5.4 NOT doing
+- ❌ No data selling
+- ❌ No targeted advertising
+- ❌ No premium matching algorithms
+- ❌ No "boost your profile" nonsense
+- ❌ No subscription tiers that gate basic features
+- ❌ No investor-pressure growth hacking
+
+---
+
+## PHASE 6 — Scale & Culture (Month 4+)
+### Goal: Grow without losing the soul.
+
+### 6.1 Mission creators
+- Open mission creation to top community members
+- "Sidekick Scribes" — people who write great missions
+- Community-submitted missions go through curation
+- Best ones get added to the main rotation with credit
+
+### 6.2 Sidekick Chapters
+- City-level communities with local leaders
+- Chapter leaders organise pop-up sessions
+- They get free kits and a tiny budget
+- Organic, not corporate. More like a book club than a franchise.
+
+### 6.3 The Sidekick Foundation
+- When we're big enough: fund playfulness
+- Grants for playgrounds, public art, community spaces
+- "We made money from adult play. We're giving it back to actual play."
+
+---
+
+## Technical Architecture Summary
+
+```
+┌──────────────────────────────────────────────┐
+│                   FRONTEND                    │
+│                                               │
+│  Landing Page (current kickbaby/ static site) │
+│  PWA App (Next.js / SvelteKit)                │
+│  - Home (Today's Mission)                     │
+│  - Solo Mode                                  │
+│  - Sidekick Mode (matching)                   │
+│  - Pocket Museum (personal collection)        │
+│  - City Board (community)                     │
+│  - Settings / Profile (minimal)               │
+└──────────────┬───────────────────────────────┘
+               │
+               │ API (REST or tRPC)
+               │
+┌──────────────▼───────────────────────────────┐
+│                   BACKEND                     │
+│                                               │
+│  Vercel Serverless Functions                  │
+│  OR                                           │
+│  Node.js + Express (if we need more control)  │
+│                                               │
+│  Routes:                                      │
+│  - /api/auth/* (Supabase Auth)                │
+│  - /api/missions (CRUD, daily rotation)       │
+│  - /api/match (find nearby sidekicks)         │
+│  - /api/results (upload mission results)      │
+│  - /api/museum (personal collection)          │
+│  - /api/city (city board, unlock status)      │
+│  - /api/waitlist (current signup flow)        │
+│  - /api/referral (invite tracking)            │
+└──────────────┬───────────────────────────────┘
+               │
+┌──────────────▼───────────────────────────────┐
+│                  DATABASE                     │
+│                                               │
+│  Supabase (Postgres)                          │
+│                                               │
+│  Tables:                                      │
+│  - users (id, name, email, city, joined_at)   │
+│  - missions (id, title, subtitle, type,       │
+│              category, metadata, created_at)   │
+│  - results (id, user_id, mission_id, type,    │
+│             content_url, created_at)           │
+│  - matches (id, user_a, user_b, mission_id,   │
+│             status, met_at, rating)            │
+│  - friendships (user_a, user_b, missions_done)│
+│  - city_boards (id, city, posts[])             │
+│  - waitlist (id, name, email, city, referrer)  │
+│                                               │
+│  Supabase Realtime: live matching updates     │
+│  Supabase Storage: photos, drawings, uploads  │
+└──────────────────────────────────────────────┘
+```
+
+---
+
+## Immediate Next Steps (the actual TODO)
+
+### This week:
+- [ ] Buy a domain
+- [ ] Deploy the landing page (Vercel or Netlify — takes 5 minutes)
+- [ ] Set up Supabase project
+- [ ] Wire the signup form to actually save data
+- [ ] Build a welcome email template
+- [ ] Set up Plausible analytics
+- [ ] Start writing the first 30 missions in a spreadsheet
+
+### Next week:
+- [ ] Build the referral system
+- [ ] Add city collection to signup
+- [ ] Build the city counter on the landing page
+- [ ] Set up the email newsletter pipeline
+- [ ] Send the first Dispatch to early signups
+
+### Week 3–4:
+- [ ] Scaffold the PWA (Next.js + Supabase)
+- [ ] Build the "Today's Mission" screen
+- [ ] Build solo mode (do + upload)
+- [ ] Build the Pocket Museum
+- [ ] Authentication via magic link
+
+### Week 5–6:
+- [ ] Build the matching system (Sidekick Mode)
+- [ ] Location services + nearby discovery
+- [ ] Build the city board
+- [ ] First round of user testing with waitlist members
+
+---
+
+## The vibe check
+
+Every decision we make from here should pass one test:
+
+> "Would a ten-year-old think this is fun?"
+
+If yes → build it.
+If no → reconsider.
+If "it's efficient but boring" → absolutely not.
+
+---
+
+## One last thing
+
+The landing page we built isn't just a website.
+
+It's a proof of concept for the entire product philosophy:
+
+- The paper fold entrance → first impressions should be playful
+- The pocket adventures → the core product loop
+- The treasure desk → nostalgia is the emotional hook
+- The polaroids → memories are what we're really selling
+- The bulletin board → community is where retention lives
+- The library card → signup should feel like joining a club
+- The frog → there should always be a frog
+
+We already built the soul. Now we build the body.
+
+---
+
+*"Adults bond fastest when they temporarily stop acting like adults."*
+
+*That's the entire company thesis. Everything we build should prove it.*
