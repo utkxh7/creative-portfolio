@@ -645,39 +645,6 @@ export default function Home() {
               Film cinematography is where I train my aesthetic instincts for digital products: atmospheric pacing, high-contrast chiaroscuro shadows, and saturated color palettes. Selected frames from my ongoing personal visual notebook:
             </p>
 
-            <div className="cinematography-gallery-grid">
-              <Link to="/instagram" className="cinema-frame" style={{ textDecoration: 'none' }}>
-                <img src="/assets/wkw_cinema.png" alt="Wong Kar-wai style Chinatown film frame" />
-                <div className="cinema-overlay">
-                  <span className="cinema-caption">NEON CHINATOWN // 35MM</span>
-                  <span className="cinema-subcaption">Wong Kar-wai chiaroscuro lighting & cyan-red split</span>
-                </div>
-              </Link>
-
-              <Link to="/instagram" className="cinema-frame" style={{ textDecoration: 'none' }}>
-                <img src="/assets/magenta_gel_portrait.png" alt="Experimental magenta gel portrait" />
-                <div className="cinema-overlay">
-                  <span className="cinema-caption">EXPERIMENTAL STUDIO // GEL</span>
-                  <span className="cinema-subcaption">Magenta gel silhouette & raw exposure control</span>
-                </div>
-              </Link>
-
-              <Link to="/instagram" className="cinema-frame" style={{ textDecoration: 'none' }}>
-                <img src="/assets/wkw_mood.png" alt="Twilight atmospheric mood photograph" />
-                <div className="cinema-overlay">
-                  <span className="cinema-caption">NOCTURNAL DRIFT // 800T</span>
-                  <span className="cinema-subcaption">CineStill tungsten halation & urban loneliness</span>
-                </div>
-              </Link>
-
-              <Link to="/instagram" className="cinema-frame" style={{ textDecoration: 'none' }}>
-                <img src="/instagram-feed/utkarsh_profile_grid.png" alt="Visual archive curation grid" />
-                <div className="cinema-overlay">
-                  <span className="cinema-caption">CURATED FEED // ARCHIVE</span>
-                  <span className="cinema-subcaption">Visual notebook stream (@utkarshhguptaaa)</span>
-                </div>
-              </Link>
-            </div>
 
             <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
               <Link
