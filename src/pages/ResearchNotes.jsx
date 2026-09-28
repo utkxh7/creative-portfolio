@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import { 
   FileText, 
   Shield, 
-  Lock, 
   Eye, 
   Layers, 
   TrendingUp, 
@@ -29,9 +28,6 @@ export default function ResearchNotes() {
       <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '1rem' }}>
         <span className="status-pill" style={{ background: 'var(--accent-amber-light)', color: 'var(--accent-amber)', borderColor: 'var(--accent-amber-border)' }}>
           ACADEMIC WORKING PAPER // DISCOM GRID ECONOMICS
-        </span>
-        <span className="status-pill" style={{ background: 'var(--bg-surface)', color: 'var(--text-muted)', borderColor: 'var(--border-color)', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-          <Lock size={12} /> View-Only Manuscript (Download Disabled)
         </span>
       </div>
 
