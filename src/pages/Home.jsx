@@ -185,33 +185,32 @@ export default function Home() {
               letterSpacing: '0.14em',
               textTransform: 'uppercase'
             }}>
-              INDORE, INDIA · ELECTRICAL ENGINEERING @ SGSITS · OPEN TO CREATIVE DIRECTION & PRODUCT DESIGN ROLES
+              INDORE, INDIA · ENGINEERING BACKGROUND · OPEN TO PRODUCT DESIGN & CREATIVE TECH ROLES
             </span>
           </div>
 
           <h1 className="hero-name" style={{ marginBottom: '0.85rem' }}>Utkarsh Gupta</h1>
           
           <p className="hero-tagline" style={{ fontSize: '1.35rem', color: 'var(--text-primary)', marginBottom: '1.15rem', fontWeight: 600, lineHeight: 1.4 }}>
-            Engineer who thinks like a Creative Director. Creative Director who reasons like an Electrical Engineer.
+            Product Designer & Creative Technologist bridging physical hardware, spatial 3D, and real-time web.
           </p>
 
-          <p className="hero-bio" style={{ maxWidth: '860px', fontSize: '1.04rem', lineHeight: '1.75', color: 'var(--text-secondary)', marginBottom: '1.85rem' }}>
-            I build at the intersection of high-taste brand worldbuilding, 0-to-1 digital product architecture, and physical engineering. From founding <strong>Chingari</strong> (a collectible brass EDC universe rooted in vintage Indian matchbox folklore) and designing <strong>Sidekick™</strong> (a zero-algorithm real-time cyberspace co-presence engine), to rendering spatial 3D WebGL rooms and shooting Wong Kar-wai inspired 35mm film studies—all underpinned by formal electrical engineering modeling ₹1.91L Cr power grid economics.
+          <p className="hero-bio" style={{ maxWidth: '820px', fontSize: '1.02rem', lineHeight: '1.75', color: 'var(--text-secondary)', marginBottom: '1.85rem' }}>
+            Engineer building 0-to-1 digital products, spatial 3D interfaces, and physical brand systems. Focused on high-craft execution where systems thinking meets thoughtful visual design.
           </p>
 
           {/* Target Creative Roles Strip */}
           <div className="role-tags" style={{ marginBottom: '2.25rem' }}>
             <span className="role-tag-label">Target Roles:</span>
             <span className="role-tag" style={{ borderColor: 'rgba(229, 169, 60, 0.4)', color: '#E5A93C', background: 'rgba(229, 169, 60, 0.08)' }}>
-              Brand Architect & Creative Director
-            </span>
-            <span className="role-tag" style={{ borderColor: 'rgba(16, 185, 129, 0.4)', color: '#10B981', background: 'rgba(16, 185, 129, 0.08)' }}>
               0-to-1 Product Designer / Founding Designer
             </span>
             <span className="role-tag" style={{ borderColor: 'rgba(59, 130, 246, 0.4)', color: '#60A5FA', background: 'rgba(59, 130, 246, 0.08)' }}>
               Creative Technologist (3D / Spatial / Real-Time)
             </span>
-            <span className="role-tag">Physical EDC Hardware Designer</span>
+            <span className="role-tag" style={{ borderColor: 'rgba(16, 185, 129, 0.4)', color: '#10B981', background: 'rgba(16, 185, 129, 0.08)' }}>
+              Brand & Physical Hardware Designer
+            </span>
           </div>
 
           <div className="hero-actions" style={{ flexWrap: 'wrap', gap: '0.85rem' }}>
