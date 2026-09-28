@@ -203,7 +203,7 @@ export default function Home() {
           <div className="role-tags" style={{ marginBottom: '2.25rem' }}>
             <span className="role-tag-label">Target Roles:</span>
             <span className="role-tag" style={{ borderColor: 'rgba(229, 169, 60, 0.4)', color: '#E5A93C', background: 'rgba(229, 169, 60, 0.08)' }}>
-              0-to-1 Product Designer / Founding Designer
+              0-to-1 Product Designer
             </span>
             <span className="role-tag" style={{ borderColor: 'rgba(59, 130, 246, 0.4)', color: '#60A5FA', background: 'rgba(59, 130, 246, 0.08)' }}>
               Creative Technologist (3D / Spatial / Real-Time)
