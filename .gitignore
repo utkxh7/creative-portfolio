@@ -25,3 +25,11 @@ dist-ssr
 
 .vercel
 .env*
+
+# Google Photos synced archive (large binary files)
+public/visual-archive/
+google-photos-sync/credentials.json
+google-photos-sync/tokens.json
+google-photos-sync/node_modules/
+google-photos-sync/client_secret*.json
+google-photos-sync/*.json.secret

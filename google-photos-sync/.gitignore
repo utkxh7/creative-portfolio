@@ -1,0 +1,5 @@
+# Sensitive OAuth files
+credentials.json
+tokens.json
+client_secret*.json
+node_modules/

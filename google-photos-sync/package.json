@@ -1,0 +1,17 @@
+{
+  "name": "google-photos-sync",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Sync best photos from Google Photos to the creative portfolio visual archive",
+  "scripts": {
+    "setup": "node setup-oauth.js",
+    "sync": "node sync-photos.js",
+    "sync:favorites": "node sync-photos.js --favorites",
+    "sync:best": "node sync-photos.js --best"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0",
+    "open": "^10.1.0",
+    "sharp": "^0.33.5"
+  }
+}

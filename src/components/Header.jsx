@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 
 export default function Header({
-  brandText = 'UG',
+  brandText = 'UK',
   brandTo = '/',
   showBack = false,
   backText = '← Back',

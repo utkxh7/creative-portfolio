@@ -158,7 +158,7 @@ export default function Home() {
     <div className="page-wrapper">
       {/* ═══════════ ARE.NA STICKY TOP NAV ═══════════ */}
       <Header
-        brandText="UG"
+        brandText="UK"
         brandTo="/"
         navItems={[
           { label: 'Creative Proof', targetId: 'proof' },
