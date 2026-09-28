@@ -76,87 +76,93 @@ export default function ResearchNotes() {
           <div className="section-label">01 // The Core Engineering Hypothesis</div>
           <div className="section-body">
             <p style={{ fontSize: '1.02rem', lineHeight: '1.65', color: 'var(--text-primary)', marginBottom: '1.5rem' }}>
-              Conventional rooftop solar in India pushes energy backward through overloaded distribution transformers into higher-voltage lines, only for consumers to draw power from distant thermal plants at night. This architecture causes catastrophic technical line loss.
+              Conventional rooftop solar in India pushes energy backward through overloaded distribution transformers into higher-voltage lines, only for consumers to draw power from distant thermal plants at night. This architecture causes structural technical line loss — and no amount of solar panel deployment fixes it without rethinking where the energy is stored.
             </p>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
             
-            {/* 1. The Grid Problem */}
+            {/* A. The Scale of the Problem */}
             <div>
               <h3 style={{ fontSize: '0.92rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-                A. The Macro Problem: India's ₹1.91 Lakh Crore AT&C Loss
+                A. The Scale of the Problem
               </h3>
+              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: '1.65', marginBottom: '0.65rem' }}>
+                Indian DISCOMs carry ₹6.47 lakh crore in accumulated losses as of FY 2024-25 — roughly 3-4% of Indian GDP. AT&C losses have improved significantly, falling from 22.62% in 2013-14 to a record low of 15.04% in FY 2024-25. But that improvement masks a structural problem that gets worse as rooftop solar scales: the Duck Curve.
+              </p>
               <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: '1.65' }}>
-                India experiences aggregate technical and commercial (AT&C) losses averaging <strong>21.4%</strong> nationally (translating to ~347.3 TWh of unbilled energy and ₹1,91,015 Crores in annual utility deficit). While commercial theft requires administrative metering overhauls, <em>technical losses</em> are physically governed by transmission line impedance across low-voltage rural and suburban distribution grids.
+                <strong>Important distinction:</strong> AT&C losses have two components. Commercial losses — theft, billing fraud, meter tampering — require administrative and enforcement fixes. This framework addresses technical losses specifically: the physical I²R dissipation in distribution conductors and transformers that no metering reform can solve. As a secondary benefit, the shift to smart AMI metering and blockchain-settled transactions inherent in this architecture makes direct electricity theft structurally harder — you cannot hook a wire into a cryptographically verified transaction.
               </p>
             </div>
 
-            {/* 2. The Physics */}
+            {/* B. The Physics */}
             <div>
               <h3 style={{ fontSize: '0.92rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-                B. The Physics: Conductor Dissipation & P<sub>loss</sub> = I²R
+                B. The Physics: Conductor Dissipation and P<sub>loss</sub> = I²R
               </h3>
               <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: '1.65' }}>
-                Thermal line dissipation scales quadratically with current: <code>P<sub>loss</sub> = I²R</code>. In standard net-metering schemes:
+                Thermal line dissipation scales quadratically with current: <code>P<sub>loss</sub> = I²R</code>. In standard net-metering schemes this creates a predictable daily crisis:
               </p>
               <ul className="clean-list" style={{ marginTop: '0.5rem' }}>
-                <li><strong>Midday Reverse Flow:</strong> Rooftop solar peaks at midday (11:00 AM – 2:30 PM) when domestic load is low. Current is wheeled back up the feeder lines into 11kV distribution transformers, dissipating heat and causing voltage rise issues.</li>
-                <li><strong>Evening Peak Draw:</strong> Between 6:00 PM – 10:00 PM, domestic demand spikes just as solar output drops to zero. Power must travel long distances from centralized thermal generation over high-impedance suburban conductors, multiplying <code>I²R</code> losses during the day's highest tariff slots.</li>
-                <li><strong>The Neighborhood Perimeter:</strong> By storing midday surplus in community battery banks connected at the 11kV/415V transformer level, power travel distance is compressed by over 90%, drastically reducing the <code>R</code> term and eliminating multi-stage transformer cycling.</li>
+                <li><strong>Midday Reverse Flow:</strong> Rooftop solar peaks between 11 AM and 2:30 PM when domestic load is low. Current is wheeled back up feeder lines into 11kV distribution transformers, dissipating heat and causing voltage rise issues.</li>
+                <li><strong>Evening Peak Draw:</strong> Between 6 PM and 10 PM, domestic demand spikes just as solar output drops to zero. Power must travel long distances from centralised thermal generation over high-impedance suburban conductors, multiplying I²R losses during the day's highest tariff slots.</li>
+                <li><strong>The Neighbourhood Perimeter:</strong> By storing midday surplus in community battery banks connected at the 11kV/415V transformer level, power travel distance is compressed by over 90%, drastically reducing the R term and eliminating multi-stage transformer cycling.</li>
               </ul>
             </div>
 
-            {/* 3. Substation BESS Architecture */}
+            {/* C. Physical Architecture */}
             <div>
               <h3 style={{ fontSize: '0.92rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-                C. Physical Architecture: 11kV Substation BESS & 4-Layer EMS
+                C. Physical Architecture: 11kV Substation BESS and 4-Layer EMS
               </h3>
               <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: '1.65', marginBottom: '0.75rem' }}>
-                Individual home batteries suffer from low capacity utilization and high per-unit inverter costs. The model aggregates storage at the local Distribution Transformer (DT) level, managed by an automated 4-layer Energy Management System (EMS):
+                Individual home batteries suffer from low capacity utilisation and high per-unit inverter costs. This model aggregates storage at the local Distribution Transformer level, managed by an automated 4-layer Energy Management System:
               </p>
               <div className="duality-grid" style={{ gap: '0.75rem' }}>
                 <div className="duality-card" style={{ padding: '0.85rem 1rem' }}>
                   <div className="duality-card-title" style={{ fontSize: '0.85rem' }}>1. Data Acquisition Layer</div>
-                  <div className="duality-card-body" style={{ fontSize: '0.82rem' }}>Sub-second AMI telemetry monitoring consumer smart meters and battery cell temperature, voltage, and state of charge (SoC).</div>
+                  <div className="duality-card-body" style={{ fontSize: '0.82rem' }}>Sub-second AMI telemetry monitoring consumer smart meters and battery cell temperature, voltage, and state of charge.</div>
                 </div>
                 <div className="duality-card" style={{ padding: '0.85rem 1rem' }}>
                   <div className="duality-card-title" style={{ fontSize: '0.85rem' }}>2. Forecasting Engine</div>
-                  <div className="duality-card-body" style={{ fontSize: '0.82rem' }}>LSTM machine learning models predicting next-day solar irradiance profiles and feeder-level consumption curves based on historical trends.</div>
+                  <div className="duality-card-body" style={{ fontSize: '0.82rem' }}>LSTM machine learning models predicting next-day solar irradiance profiles and feeder-level consumption curves based on historical trends and IMD weather data.</div>
                 </div>
                 <div className="duality-card" style={{ padding: '0.85rem 1rem' }}>
                   <div className="duality-card-title" style={{ fontSize: '0.85rem' }}>3. Optimization Engine</div>
-                  <div className="duality-card-body" style={{ fontSize: '0.82rem' }}>Linear programming algorithms dynamically solving for loss minimization and battery cycle preservation while accounting for a ₹1.00/kWh DISCOM wheeling fee.</div>
+                  <div className="duality-card-body" style={{ fontSize: '0.82rem' }}>Linear programming algorithms dynamically solving for loss minimisation and battery cycle preservation while accounting for a ₹1.00/kWh DISCOM wheeling fee.</div>
                 </div>
                 <div className="duality-card" style={{ padding: '0.85rem 1rem' }}>
-                  <div className="duality-card-title" style={{ fontSize: '0.85rem' }}>4. Control & Dispatch Layer</div>
-                  <div className="duality-card-body" style={{ fontSize: '0.82rem' }}>Priority routing: 1) Instant local demand matching → 2) Substation BESS charging → 3) Evening peak shaving (6–10 PM) → 4) Grid export.</div>
+                  <div className="duality-card-title" style={{ fontSize: '0.85rem' }}>4. Control and Dispatch Layer</div>
+                  <div className="duality-card-body" style={{ fontSize: '0.82rem' }}>Priority routing: instant local demand matching → substation BESS charging → evening peak shaving (6-10 PM) → grid export.</div>
                 </div>
               </div>
             </div>
 
-            {/* 4. Indore Simulation */}
+            {/* D. Simulated Case Study */}
             <div>
               <h3 style={{ fontSize: '0.92rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
                 D. Simulated Case Study: 50-Household Cluster in Indore
               </h3>
               <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: '1.65' }}>
-                Simulated a residential cluster of 50 households (10 solar prosumers with 5kW RTS + 40 consumers) in Indore using actual seasonal insolation and load profiles:
+                Simulated a residential cluster of 50 households — 10 solar prosumers with 5kW rooftop systems and 40 consumers — using actual seasonal insolation and load profiles for Indore:
               </p>
-              <ul className="clean-list" style={{ marginTop: '0.5rem' }}>
-                <li><strong>Surplus Capture:</strong> P2P energy trading captured ~<strong>110 kWh</strong> of daily excess solar energy that would otherwise be curtailed or lost.</li>
-                <li><strong>Peak Demand Shaving:</strong> Substation battery dispatch during evening peak hours reduced transformer demand on the main grid by up to <strong>55%</strong>.</li>
-                <li><strong>Monte Carlo Stress Test:</strong> 2,000 stochastic iterations evaluating monsoon solar drops and tariff shifts confirmed positive cash flow with 99% confidence.</li>
+              <ul className="clean-list" style={{ marginTop: '0.5rem', marginBottom: '0.75rem' }}>
+                <li><strong>Surplus Capture:</strong> P2P energy trading captured approximately 110 kWh of daily excess solar energy that would otherwise be curtailed or undervalued.</li>
+                <li><strong>Peak Demand Shaving:</strong> Substation battery dispatch during evening peak hours reduced transformer demand on the main grid by up to 55%.</li>
+                <li><strong>Monte Carlo Stress Test:</strong> 2,000 stochastic iterations evaluating monsoon solar drops and tariff shifts confirmed positive cash flow with 99% confidence, with a risk-adjusted daily saving of approximately ₹250 even under worst-case conditions.</li>
               </ul>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.6', fontStyle: 'italic', background: 'var(--bg-hover)', padding: '0.65rem 0.9rem', borderRadius: '6px', borderLeft: '2px solid var(--border-strong)' }}>
+                <strong>Note on capital expenditure:</strong> This framework models operational economics post-deployment. Capital expenditure for BESS infrastructure and AMI metering is not modelled here — that is a policy and financing question, partially addressed by the government's RDSS scheme and PM Surya Ghar programme.
+              </p>
             </div>
 
-            {/* 5. Honest Reality */}
-            <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1rem 1.25rem' }}>
-              <div style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
+            {/* Honest Reality */}
+            <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.1rem 1.35rem' }}>
+              <div style={{ fontWeight: 700, fontSize: '0.88rem', color: 'var(--text-primary)', marginBottom: '0.45rem' }}>
                 ⚖️ Honest Academic Reality: Why This Remains a Hypothesis
               </div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                <strong>Degradation vs. Avoided Loss Paradox:</strong> Lithium-ion battery cycle degradation costs (~₹4–6 per cycled kWh) must remain strictly lower than the financial value of avoided I²R technical losses plus peak-hour power purchase arbitrage (₹8–12/kWh in spot utility markets). Furthermore, Indian DISCOM regulatory frameworks currently lack standardized billing mechanisms for non-utility community storage assets. This paper establishes the physical and economic model; empirical pilot microgrids are required before commercial claims can be made.
+              <div style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: '1.65' }}>
+                <strong>Degradation vs. Avoided Loss Paradox:</strong> Lithium-ion battery cycle degradation costs (~₹4-6 per cycled kWh) must remain strictly lower than the financial value of avoided I²R technical losses plus peak-hour power purchase arbitrage (₹8-12/kWh in spot utility markets). This paper establishes the physical and economic model — empirical pilot microgrids are required before commercial claims can be made.
               </div>
             </div>
 
@@ -258,6 +264,69 @@ export default function ResearchNotes() {
 
           {/* Paper Content Body */}
           <div style={{ fontSize: '0.92rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
+
+            {/* Context Panel: Where this research stands as of September 2026 */}
+            <div style={{
+              marginBottom: '2rem',
+              padding: '1.35rem 1.5rem',
+              background: 'var(--bg-surface)',
+              border: '1px solid var(--border-color)',
+              borderLeft: '4px solid var(--accent-blue)',
+              borderRadius: '8px',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.65rem', flexWrap: 'wrap' }}>
+                <TrendingUp size={16} style={{ color: 'var(--accent-blue)' }} />
+                <span style={{
+                  color: 'var(--text-primary)',
+                  fontWeight: 700,
+                  fontSize: '0.92rem',
+                  letterSpacing: '0.02em'
+                }}>
+                  Where this research stands as of September 2026
+                </span>
+                <span className="status-pill" style={{
+                  background: 'var(--accent-blue-light)',
+                  color: 'var(--accent-blue)',
+                  borderColor: 'var(--accent-blue-border)',
+                  fontSize: '0.68rem',
+                  padding: '0.15rem 0.45rem',
+                  marginLeft: 'auto'
+                }}>
+                  Real-World Validation
+                </span>
+              </div>
+
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: '1.65', marginBottom: '0.9rem' }}>
+                This paper was submitted to AROHAN 2025 Student Research Conclave and written in late 2024 as a theoretical framework. Since submission, several of its core proposals have moved from hypothesis to real-world validation:
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.86rem', lineHeight: '1.65' }}>
+                <div style={{ padding: '0.75rem 0.95rem', background: 'var(--bg-hover)', borderRadius: '6px' }}>
+                  <strong style={{ color: 'var(--text-primary)' }}>The P2P trading layer:</strong> In February 2026, DERC and UPERC approved six-month pilots for blockchain-settled P2P solar energy trading in Delhi and western UP, under the India Energy Stack framework. PVVNL reported 1,164 completed trades in the pilot's first six months. The pilot has since been extended to March 2027 following initial success. The wheeling charge mechanism this paper proposed is now operational.
+                </div>
+
+                <div style={{ padding: '0.75rem 0.95rem', background: 'var(--bg-hover)', borderRadius: '6px' }}>
+                  <strong style={{ color: 'var(--text-primary)' }}>The community BESS layer:</strong> In May 2025, India's first utility-scale standalone BESS project was commissioned at BSES Rajdhani's Kilokari substation in New Delhi — a 20MW/40MWh system serving over 12,000 consumers, at a cost approximately 55% below the previous benchmark tariff. The neighbourhood-level BESS architecture proposed in this paper is being independently validated in Australia, where Ausgrid has deployed nine community batteries in New South Wales, and in Switzerland, where the Quartierstrom project — the closest real-world parallel to this model — ran a live blockchain-managed community energy system with 37 households, 280kWp of solar, and 80kWh of shared battery storage downstream of a distribution substation.
+                </div>
+
+                <div style={{ padding: '0.75rem 0.95rem', background: 'var(--bg-hover)', borderRadius: '6px' }}>
+                  <strong style={{ color: 'var(--text-primary)' }}>What remains unvalidated:</strong> The specific combination of neighbourhood BESS + blockchain P2P trading + DISCOM wheeling charges operating together within a single Indian distribution grid has not yet been piloted. That integration layer is what this paper proposes and what remains to be tested.
+                </div>
+              </div>
+
+              <div style={{
+                marginTop: '1rem',
+                paddingTop: '0.85rem',
+                borderTop: '1px solid var(--border-color)',
+                fontSize: '0.84rem',
+                fontStyle: 'italic',
+                color: 'var(--text-muted)',
+                lineHeight: '1.6'
+              }}>
+                This paper does not claim credit for these developments. It claims that the engineering and economic logic it identified independently was correct — and that the path from hypothesis to pilot is now shorter than it was when this was written.
+              </div>
+            </div>
             
             {/* Abstract */}
             {(activeSection === 'all' || activeSection === 'abstract') && (
